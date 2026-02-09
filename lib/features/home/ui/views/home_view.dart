@@ -1,5 +1,5 @@
 import 'package:bookly/core/utils/styles.dart';
-import 'package:bookly/features/home/ui/widgets/best_seller_list_view.dart';
+import 'package:bookly/features/home/ui/widgets/newest_books_list_view.dart';
 import 'package:bookly/features/home/ui/widgets/custom_appbar.dart';
 import 'package:bookly/features/home/ui/widgets/featured_list_view.dart';
 
@@ -25,13 +25,13 @@ class HomeView extends StatelessWidget {
                 SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Text('Best Seller', style: Styles.textStyle18),
+                  child: Text('Newest Books', style: Styles.textStyle18),
                 ),
                 SizedBox(height: 20),
               ],
             ),
           ),
-          BestSellerListView(),
+          NewestBooksListView(),
         ],
       ),
     );

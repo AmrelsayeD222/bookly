@@ -6,8 +6,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/styles.dart';
 
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key, this.tag});
+class NewestBooksListViewItem extends StatelessWidget {
+  const NewestBooksListViewItem({super.key, this.tag});
 
   final Object? tag;
   @override
