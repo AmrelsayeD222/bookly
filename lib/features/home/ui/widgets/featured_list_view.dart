@@ -18,11 +18,11 @@ class FeaturedBooksListView extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              GoRouter.of(context).push(detailsView);
+              GoRouter.of(context).push(detailsView, extra: 'featured$index');
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: CustomBookImage(),
+              child: CustomBookImage(tag: 'featured$index'),
             ),
           );
         },

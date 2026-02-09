@@ -7,19 +7,20 @@ import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/styles.dart';
 
 class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+  const BestSellerListViewItem({super.key, this.tag});
 
+  final Object? tag;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(detailsView);
+        GoRouter.of(context).push(detailsView, extra: tag);
       },
       child: SizedBox(
         height: 125,
         child: Row(
           children: [
-            const CustomBookImage(),
+            CustomBookImage(tag: tag),
             const SizedBox(width: 30),
             Expanded(
               child: Column(

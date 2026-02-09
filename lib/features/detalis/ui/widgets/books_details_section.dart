@@ -6,8 +6,9 @@ import '../../../home/ui/widgets/book_rating.dart';
 import '../../../home/ui/widgets/custom_book_item.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key});
+  const BookDetailsSection({super.key, required this.tag});
 
+  final String tag;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -16,7 +17,7 @@ class BookDetailsSection extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * .2),
-          child: const CustomBookImage(),
+          child: CustomBookImage(tag: tag),
         ),
         const SizedBox(height: 43),
         Text(

@@ -16,7 +16,8 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: detailsView,
       builder: (BuildContext context, GoRouterState state) {
-        return const DetailsView();
+        final tag = state.extra as String;
+        return DetailsView(tag: tag);
       },
     ),
     GoRoute(
