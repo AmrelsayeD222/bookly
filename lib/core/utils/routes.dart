@@ -1,5 +1,5 @@
 import 'package:bookly/core/utils/constants.dart';
-import 'package:bookly/features/details/ui/view/details_view.dart';
+import 'package:bookly/features/detalis/ui/view/details_view.dart';
 import 'package:bookly/features/home/ui/views/home_view.dart';
 import 'package:bookly/features/search/ui/search_view.dart';
 import 'package:flutter/material.dart';
