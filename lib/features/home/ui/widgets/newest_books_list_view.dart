@@ -10,9 +10,9 @@ class NewestBooksListView extends StatelessWidget {
     return SliverList.builder(
       itemCount: 10,
       itemBuilder: (context, index) {
-        return const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-          child: NewestBooksListViewItem(),
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+          child: NewestBooksListViewItem(tag: 'newest_book_$index'),
         );
       },
     );
