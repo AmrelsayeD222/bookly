@@ -1,6 +1,6 @@
 import 'package:bookly/core/errors/failure.dart';
 import 'package:bookly/core/utils/constants.dart';
-import 'package:bookly/features/home/data/model/books_model/books_model.dart';
+import 'package:bookly/features/home/data/model/books_model/item.dart';
 import 'package:bookly/features/home/data/repo/home_repo.dart';
 import 'package:bookly/features/home/data/service/api_service.dart';
 import 'package:dartz/dartz.dart';
@@ -11,15 +11,13 @@ class HomeRepoImpl implements HomeRepo {
 
   HomeRepoImpl(this.apiService);
   @override
-  Future<Either<Failure, List<BooksModel>>> fetchNewsetBooks() async {
+  Future<Either<Failure, List<Item>>> fetchNewsetBooks() async {
     try {
       var data = await apiService.get(endPoint: newestEndPoint);
-      List<BooksModel> books = [];
-      for (var item in data['items']) {
-        try {
-          books.add(BooksModel.fromJson(item));
-        } catch (e) {
-          books.add(BooksModel.fromJson(item));
+      List<Item> books = [];
+      if (data['items'] != null) {
+        for (var item in data['items']) {
+          books.add(Item.fromJson(item));
         }
       }
 
@@ -33,12 +31,14 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BooksModel>>> fetchFeaturedBooks() async {
+  Future<Either<Failure, List<Item>>> fetchFeaturedBooks() async {
     try {
-      var data = await apiService.get(endPoint: featuresdEndPoint);
-      List<BooksModel> books = [];
-      for (var item in data['items']) {
-        books.add(BooksModel.fromJson(item));
+      var data = await apiService.get(endPoint: featuredEndPoint);
+      List<Item> books = [];
+      if (data['items'] != null) {
+        for (var item in data['items']) {
+          books.add(Item.fromJson(item));
+        }
       }
 
       return right(books);
@@ -51,14 +51,16 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<BooksModel>>> fetchSimilarBooks({
+  Future<Either<Failure, List<Item>>> fetchSimilarBooks({
     required String category,
   }) async {
     try {
       var data = await apiService.get(endPoint: similarBooksEndPoint);
-      List<BooksModel> books = [];
-      for (var item in data['items']) {
-        books.add(BooksModel.fromJson(item));
+      List<Item> books = [];
+      if (data['items'] != null) {
+        for (var item in data['items']) {
+          books.add(Item.fromJson(item));
+        }
       }
 
       return right(books);

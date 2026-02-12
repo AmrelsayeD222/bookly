@@ -12,6 +12,8 @@ class VolumeInfo {
   final int? pageCount;
   final String? printType;
   final List<String>? categories;
+  final num? averageRating;
+  final int? ratingsCount;
   final String? maturityRating;
   final bool? allowAnonLogging;
   final String? contentVersion;
@@ -25,12 +27,14 @@ class VolumeInfo {
   const VolumeInfo({
     this.title,
     this.publishedDate,
-    this.authors, // 👈 تمت إضافتها هنا
+    this.authors,
     this.industryIdentifiers,
     this.readingModes,
     this.pageCount,
     this.printType,
     this.categories,
+    this.averageRating,
+    this.ratingsCount,
     this.maturityRating,
     this.allowAnonLogging,
     this.contentVersion,
@@ -45,10 +49,9 @@ class VolumeInfo {
   factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
     title: json['title'] as String?,
     publishedDate: json['publishedDate'] as String?,
-    authors:
-        (json['authors'] as List<dynamic>?) // 👈 إضافة parsing
-            ?.map((e) => e as String)
-            .toList(),
+    authors: (json['authors'] as List<dynamic>?)
+        ?.map((e) => e as String)
+        .toList(),
     industryIdentifiers: (json['industryIdentifiers'] as List<dynamic>?)
         ?.map((e) => IndustryIdentifier.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -60,6 +63,8 @@ class VolumeInfo {
     categories: (json['categories'] as List<dynamic>?)
         ?.map((e) => e as String)
         .toList(),
+    averageRating: json['averageRating'] as num?,
+    ratingsCount: json['ratingsCount'] as int?,
     maturityRating: json['maturityRating'] as String?,
     allowAnonLogging: json['allowAnonLogging'] as bool?,
     contentVersion: json['contentVersion'] as String?,
@@ -80,12 +85,14 @@ class VolumeInfo {
   Map<String, dynamic> toJson() => {
     'title': title,
     'publishedDate': publishedDate,
-    'authors': authors, // 👈 إضافة في TO JSON
+    'authors': authors,
     'industryIdentifiers': industryIdentifiers?.map((e) => e.toJson()).toList(),
     'readingModes': readingModes?.toJson(),
     'pageCount': pageCount,
     'printType': printType,
     'categories': categories,
+    'averageRating': averageRating,
+    'ratingsCount': ratingsCount,
     'maturityRating': maturityRating,
     'allowAnonLogging': allowAnonLogging,
     'contentVersion': contentVersion,

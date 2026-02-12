@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:bookly/features/home/data/model/books_model/books_model.dart';
+import 'package:bookly/features/home/data/model/books_model/item.dart';
 import 'package:bookly/features/home/data/repo/home_repo.dart';
 
 part 'featured_books_state.dart';
