@@ -14,14 +14,8 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<Item>>> fetchNewsetBooks() async {
     try {
       var data = await apiService.get(endPoint: newestEndPoint);
-      List<Item> books = [];
-      if (data['items'] != null) {
-        for (var item in data['items']) {
-          books.add(Item.fromJson(item));
-        }
-      }
 
-      return right(books);
+      return right(_getBooksList(data));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
@@ -34,14 +28,8 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<Item>>> fetchFeaturedBooks() async {
     try {
       var data = await apiService.get(endPoint: featuredEndPoint);
-      List<Item> books = [];
-      if (data['items'] != null) {
-        for (var item in data['items']) {
-          books.add(Item.fromJson(item));
-        }
-      }
 
-      return right(books);
+      return right(_getBooksList(data));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
@@ -55,20 +43,24 @@ class HomeRepoImpl implements HomeRepo {
     required String category,
   }) async {
     try {
-      var data = await apiService.get(endPoint: similarBooksEndPoint);
-      List<Item> books = [];
-      if (data['items'] != null) {
-        for (var item in data['items']) {
-          books.add(Item.fromJson(item));
-        }
-      }
+      var data = await apiService.get(endPoint: '$similarEndPoint$category');
 
-      return right(books);
+      return right(_getBooksList(data));
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
       return left(ServerFailure(e.toString()));
     }
+  }
+
+  List<Item> _getBooksList(dynamic data) {
+    List<Item> books = [];
+    if (data['items'] != null) {
+      for (var item in data['items']) {
+        books.add(Item.fromJson(item));
+      }
+    }
+    return books;
   }
 }

@@ -1,6 +1,6 @@
 import 'package:bookly/core/utils/constants.dart';
 import 'package:bookly/core/utils/service_locator.dart';
-import 'package:bookly/features/details/ui/view/details_view.dart';
+import 'package:bookly/features/detalis/ui/view/details_view.dart';
 import 'package:bookly/features/home/data/model/books_model/item.dart';
 import 'package:bookly/features/home/data/repo/home_repo.dart';
 import 'package:bookly/features/home/ui/manager/smila_books_cubit/similar_books_cubit.dart';
