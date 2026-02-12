@@ -1,4 +1,6 @@
 import 'package:bookly/core/utils/constants.dart';
+import 'package:bookly/core/widgets/custom_error_widget.dart';
+import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly/features/home/ui/manager/featured_books_cubit/featured_books_cubit.dart';
 import 'package:bookly/features/home/ui/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +25,13 @@ class FeaturedBooksListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    GoRouter.of(
-                      context,
-                    ).push(detailsView, extra: state.books[index]);
+                    GoRouter.of(context).push(
+                      detailsView,
+                      extra: {
+                        'book': state.books[index],
+                        'tag': 'featured$index',
+                      },
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -45,9 +51,9 @@ class FeaturedBooksListView extends StatelessWidget {
             ),
           );
         } else if (state is FeaturedBooksFailure) {
-          return Center(child: Text(state.errMessage));
+          return CustomErrorWidget(errMessage: state.errMessage);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const CustomLoadingIndicator();
         }
       },
     );

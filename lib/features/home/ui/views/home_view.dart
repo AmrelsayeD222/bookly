@@ -13,14 +13,17 @@ class HomeView extends StatelessWidget {
     return const Scaffold(
       body: CustomScrollView(
         slivers: [
+          SliverAppBar(
+            pinned: true,
+            floating: false,
+            automaticallyImplyLeading: false,
+            title: CustomAppBar(),
+            centerTitle: true,
+          ),
           SliverToBoxAdapter(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: CustomAppBar(),
-                ),
                 FeaturedBooksListView(),
                 SizedBox(height: 20),
                 Padding(

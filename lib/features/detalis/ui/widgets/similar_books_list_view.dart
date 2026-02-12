@@ -1,4 +1,6 @@
 import 'package:bookly/core/utils/constants.dart';
+import 'package:bookly/core/widgets/custom_error_widget.dart';
+import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly/features/home/ui/manager/smila_books_cubit/similar_books_cubit.dart';
 import 'package:bookly/features/home/ui/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +25,13 @@ class SimilarBooksListview extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: GestureDetector(
                     onTap: () {
-                      GoRouter.of(
-                        context,
-                      ).push(detailsView, extra: state.books[index]);
+                      GoRouter.of(context).push(
+                        detailsView,
+                        extra: {
+                          'book': state.books[index],
+                          'tag': 'similar$index',
+                        },
+                      );
                     },
                     child: CustomBookImage(
                       imageUrl:
@@ -42,9 +48,9 @@ class SimilarBooksListview extends StatelessWidget {
             ),
           );
         } else if (state is SimilarBooksFailure) {
-          return Center(child: Text(state.errMessage));
+          return CustomErrorWidget(errMessage: state.errMessage);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const CustomLoadingIndicator();
         }
       },
     );

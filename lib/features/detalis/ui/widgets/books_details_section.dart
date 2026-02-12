@@ -7,9 +7,10 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/styles.dart';
 
 class BookDetailsSection extends StatelessWidget {
-  const BookDetailsSection({super.key, required this.book});
+  const BookDetailsSection({super.key, required this.book, required this.tag});
 
   final Item book;
+  final String tag;
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -19,6 +20,7 @@ class BookDetailsSection extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width * .2),
           child: CustomBookImage(
+            tag: tag,
             imageUrl: book.volumeInfo!.imageLinks?.thumbnail ?? '',
           ),
         ),

@@ -5,9 +5,10 @@ import 'package:bookly/features/home/data/model/books_model/item.dart';
 import 'package:flutter/material.dart';
 
 class DetailsView extends StatelessWidget {
-  const DetailsView({super.key, required this.book});
+  const DetailsView({super.key, required this.book, required this.tag});
 
   final Item book;
+  final String tag;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +22,7 @@ class DetailsView extends StatelessWidget {
                 child: Column(
                   children: [
                     const CustomBookDetailsAppBar(),
-                    BookDetailsSection(book: book),
+                    BookDetailsSection(book: book, tag: tag),
                     Expanded(child: SizedBox(height: 50)),
                     SimilarBooksSection(),
                     SizedBox(height: 40),

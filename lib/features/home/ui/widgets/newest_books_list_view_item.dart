@@ -11,21 +11,25 @@ class NewestBooksListViewItem extends StatelessWidget {
   const NewestBooksListViewItem({
     super.key,
     required this.book,
-    required String tag,
+    required this.tag,
   });
 
   final Item book;
+  final String tag;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(detailsView, extra: book);
+        GoRouter.of(
+          context,
+        ).push(detailsView, extra: {'book': book, 'tag': tag});
       },
       child: SizedBox(
         height: 125,
         child: Row(
           children: [
             CustomBookImage(
+              tag: tag,
               imageUrl: book.volumeInfo!.imageLinks?.thumbnail ?? '',
             ),
             const SizedBox(width: 30),

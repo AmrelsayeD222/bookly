@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:bookly/core/widgets/custom_error_widget.dart';
+import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly/features/home/ui/manager/newest_books_cubit/newset_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,12 +34,10 @@ class NewestBooksListView extends StatelessWidget {
         } else if (state is NewsetBooksFailure) {
           log(state.errMessage);
           return SliverToBoxAdapter(
-            child: Center(child: Text(state.errMessage)),
+            child: CustomErrorWidget(errMessage: state.errMessage),
           );
         } else {
-          return const SliverToBoxAdapter(
-            child: Center(child: CircularProgressIndicator()),
-          );
+          return const SliverToBoxAdapter(child: CustomLoadingIndicator());
         }
       },
     );
