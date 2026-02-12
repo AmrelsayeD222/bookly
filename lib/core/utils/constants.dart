@@ -8,7 +8,6 @@ const String detailsView = '/detailsView';
 const String gtSectraFine = 'GT Sectra Fine';
 
 const String baseURL = 'https://www.googleapis.com/books/v1/';
-const String apiKey = 'AIzaSyAjtKUAPHLcMPBlKxiRz8TiEdB-FAnF2OM';
 
 const String newestEndPoint =
     'volumes?Filtering=free-ebooks&Sorting=newest &q=computer science';
