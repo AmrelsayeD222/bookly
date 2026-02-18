@@ -1,0 +1,11 @@
+class Epub {
+  final bool? isAvailable;
+  final String? downloadLink;
+
+  const Epub({this.isAvailable, this.downloadLink});
+
+  factory Epub.fromJson(Map<String, dynamic> json) => Epub(
+    isAvailable: json['isAvailable'] as bool?,
+    downloadLink: json['downloadLink'] as String?,
+  );
+}
