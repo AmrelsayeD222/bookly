@@ -26,9 +26,13 @@ class FeaturedBooksListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    GoRouter.of(
-                      context,
-                    ).push(detailsView, extra: 'featured$index');
+                    GoRouter.of(context).push(
+                      detailsView,
+                      extra: {
+                        'tag': 'featured$index',
+                        'book': state.books[index],
+                      },
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),

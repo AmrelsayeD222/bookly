@@ -42,7 +42,12 @@ class BestSellerListViewItem extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 3),
-                  Text(book.authorName ?? '', style: Styles.textStyle14),
+                  Text(
+                    book.authorName ?? '',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Styles.textStyle14,
+                  ),
                   const SizedBox(height: 3),
                   Row(
                     children: [

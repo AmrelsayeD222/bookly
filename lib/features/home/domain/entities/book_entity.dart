@@ -28,12 +28,14 @@ class BookEntity {
 
   factory BookEntity.fromJson(Map<String, dynamic> json) {
     return BookEntity(
-      bookId: json['id'],
-      title: json['volumeInfo']['title'],
-      authorName: json['volumeInfo']['authors']?[0],
-      imageUrl: json['volumeInfo']['imageLinks']['thumbnail'],
-      price: json['saleInfo']['retailPrice']['amount'],
-      rating: json['volumeInfo']['averageRating'],
+      bookId: json['id'] ?? '',
+      title: json['volumeInfo']?['title'] ?? 'No Title',
+      authorName:
+          (json['volumeInfo']?['authors'] as List<dynamic>?)?.first ??
+          'Unknown',
+      imageUrl: json['volumeInfo']?['imageLinks']?['thumbnail'] ?? '',
+      price: json['saleInfo']?['retailPrice']?['amount'] ?? 0,
+      rating: json['volumeInfo']?['averageRating'] ?? 0,
     );
   }
 }
