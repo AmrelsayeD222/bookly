@@ -1,6 +1,11 @@
 import 'package:bookly/core/utils/constants.dart';
+import 'package:bookly/features/home/ui/manager/featured_book_cubit/featured_book_cubit.dart';
+import 'package:bookly/features/home/ui/manager/featured_book_cubit/featured_book_state.dart';
 import 'package:bookly/features/home/ui/widgets/custom_book_item.dart';
+import 'package:bookly/core/widgets/custom_error_widget.dart';
+import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class FeaturedBooksListView extends StatelessWidget {
@@ -8,25 +13,40 @@ class FeaturedBooksListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * .3,
-      child: ListView.builder(
-        padding: EdgeInsets.zero,
-        physics: const BouncingScrollPhysics(),
-        itemCount: 10,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              GoRouter.of(context).push(detailsView, extra: 'featured$index');
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: CustomBookImage(tag: 'featured$index'),
+    return BlocBuilder<FeaturedBookCubit, FeaturedBookState>(
+      builder: (context, state) {
+        if (state is FeaturedBookStateSuccess) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * .3,
+            child: ListView.builder(
+              padding: EdgeInsets.zero,
+              physics: const BouncingScrollPhysics(),
+              itemCount: state.books.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    GoRouter.of(
+                      context,
+                    ).push(detailsView, extra: 'featured$index');
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: CustomBookImage(
+                      tag: 'featured$index',
+                      imageUrl: state.books[index].imageUrl ?? '',
+                    ),
+                  ),
+                );
+              },
             ),
           );
-        },
-      ),
+        } else if (state is FeaturedBookStateError) {
+          return CustomErrorWidget(errorMessage: state.message);
+        } else {
+          return const CustomLoadingIndicator();
+        }
+      },
     );
   }
 }

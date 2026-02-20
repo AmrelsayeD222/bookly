@@ -1,3 +1,4 @@
+import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:bookly/core/utils/constants.dart';
 import 'package:bookly/features/detalis/ui/view/details_view.dart';
 import 'package:bookly/features/home/ui/views/home_view.dart';
@@ -16,8 +17,11 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: detailsView,
       builder: (BuildContext context, GoRouterState state) {
-        final tag = state.extra as String;
-        return DetailsView(tag: tag);
+        final data = state.extra as Map<String, dynamic>;
+        return DetailsView(
+          tag: data['tag'] as String,
+          book: data['book'] as BookEntity,
+        );
       },
     ),
     GoRoute(

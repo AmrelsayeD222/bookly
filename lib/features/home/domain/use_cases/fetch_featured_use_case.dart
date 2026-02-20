@@ -4,9 +4,9 @@ import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:bookly/features/home/domain/repo/home_repo.dart';
 import 'package:dartz/dartz.dart';
 
-class FetchFeaturedMethodUseCase extends NoParamUseCase<List<BookEntity>> {
+class FetchFeaturedBooksUseCase extends NoParamUseCase<List<BookEntity>> {
   final HomeRepo repo;
-  FetchFeaturedMethodUseCase(this.repo);
+  FetchFeaturedBooksUseCase(this.repo);
 
   @override
   Future<Either<Failure, List<BookEntity>>> call() async {
