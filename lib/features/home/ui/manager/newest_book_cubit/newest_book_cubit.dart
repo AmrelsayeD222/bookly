@@ -8,6 +8,8 @@ class NewestBookCubit extends Cubit<NewestBookState> {
   Future<void> fetchNewestBooks() async {
     emit(NewestBookStateLoading());
     final result = await newestBookUseCase.call();
+    if (isClosed) return;
+
     result.fold(
       (failure) {
         emit(NewestBookStateError(failure.errorMessage));

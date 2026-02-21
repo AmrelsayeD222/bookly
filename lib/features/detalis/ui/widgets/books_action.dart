@@ -10,10 +10,10 @@ class BooksAction extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
-        children: const [
+        children: [
           Expanded(
             child: CustomButton(
-              text: '19.99€',
+              text: 'Free',
               backgroundColor: Colors.white,
               textColor: Colors.black,
               borderRadius: BorderRadius.only(
@@ -24,8 +24,9 @@ class BooksAction extends StatelessWidget {
           ),
           Expanded(
             child: CustomButton(
+              onPressed: () {},
               fontSize: 16,
-              text: 'Free Preview',
+              text: 'Preview',
               backgroundColor: Color(0xffEF8262),
               textColor: Colors.white,
               borderRadius: BorderRadius.only(

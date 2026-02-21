@@ -5,6 +5,10 @@ import 'package:bookly/features/home/data/repo/home_repo_impl.dart';
 import 'package:bookly/features/home/domain/repo/home_repo.dart';
 import 'package:bookly/features/home/domain/use_cases/fetch_featured_use_case.dart';
 import 'package:bookly/features/home/domain/use_cases/fetch_newest_book.dart';
+import 'package:bookly/features/detalis/data/data_source/details_remote_data_source.dart';
+import 'package:bookly/features/detalis/data/repo/details_repo_impl.dart';
+import 'package:bookly/features/detalis/domain/repo/details_repo.dart';
+import 'package:bookly/features/detalis/domain/use_cases/fetch_similar_books_use_case.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -25,5 +29,15 @@ void setupServiceLocator() {
   );
   getIt.registerLazySingleton<FetchNewestBookUseCase>(
     () => FetchNewestBookUseCase(getIt<HomeRepo>()),
+  );
+  getIt.registerSingleton<DetailsRepo>(
+    DetailsRepoImpl(
+      remoteDataSource: DetailsRemoteDataSourceImpl(
+        apiService: getIt<ApiService>(),
+      ),
+    ),
+  );
+  getIt.registerLazySingleton<FetchSimilarBooksUseCase>(
+    () => FetchSimilarBooksUseCase(getIt<DetailsRepo>()),
   );
 }
