@@ -24,7 +24,6 @@ class BooksAction extends StatelessWidget {
           ),
           Expanded(
             child: CustomButton(
-              onPressed: () {},
               fontSize: 16,
               text: 'Preview',
               backgroundColor: Color(0xffEF8262),

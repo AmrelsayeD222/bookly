@@ -30,8 +30,7 @@ class BestSellerListViewItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * .5,
+                  Expanded(
                     child: Text(
                       book.title,
                       maxLines: 2,
@@ -42,24 +41,28 @@ class BestSellerListViewItem extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 3),
-                  Text(
-                    book.authorName ?? '',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Styles.textStyle14,
+                  Expanded(
+                    child: Text(
+                      book.authorName ?? '',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Styles.textStyle14,
+                    ),
                   ),
                   const SizedBox(height: 3),
-                  Row(
-                    children: [
-                      Text(
-                        '${book.price ?? 0} €',
-                        style: Styles.textStyle20.copyWith(
-                          fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Text(
+                          '${book.price ?? 0} €',
+                          style: Styles.textStyle20.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const Spacer(),
-                      BookRating(rating: book.rating ?? 0),
-                    ],
+                        const Spacer(),
+                        BookRating(rating: book.rating ?? 0),
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -15,3 +15,10 @@ final class FeaturedBookStateError extends FeaturedBookState {
   final String message;
   FeaturedBookStateError(this.message);
 }
+
+final class FeaturedBookPaginationLoading extends FeaturedBookState {}
+
+final class FeaturedBookPaginationFailure extends FeaturedBookState {
+  final String message;
+  FeaturedBookPaginationFailure(this.message);
+}

@@ -16,9 +16,12 @@ class BestSellerListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewestBookCubit, NewestBookState>(
       builder: (context, state) {
-        if (state is NewestBookStateSuccess) {
+        if (state is NewestBookStateSuccess ||
+            state is NewestBookStatePaginationLoading ||
+            state is NewestBookStatePaginationError) {
+          final books = BlocProvider.of<NewestBookCubit>(context).books;
           return SliverList.builder(
-            itemCount: state.books.length,
+            itemCount: books.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(
@@ -26,7 +29,7 @@ class BestSellerListView extends StatelessWidget {
                   horizontal: 30,
                 ),
                 child: BestSellerListViewItem(
-                  book: state.books[index],
+                  book: books[index],
                   tag: 'bestSeller$index',
                 ),
               );
