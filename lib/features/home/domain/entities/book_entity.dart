@@ -16,6 +16,8 @@ class BookEntity {
   final num? price;
   @HiveField(5)
   final num? rating;
+  @HiveField(6)
+  final String? previewLink;
 
   BookEntity({
     required this.bookId,
@@ -24,6 +26,7 @@ class BookEntity {
     required this.imageUrl,
     required this.price,
     required this.rating,
+    required this.previewLink,
   });
 
   factory BookEntity.fromJson(Map<String, dynamic> json) {
@@ -36,6 +39,7 @@ class BookEntity {
       imageUrl: json['volumeInfo']?['imageLinks']?['thumbnail'] ?? '',
       price: json['saleInfo']?['retailPrice']?['amount'] ?? 0,
       rating: json['volumeInfo']?['averageRating'] ?? 0,
+      previewLink: json['volumeInfo']?['previewLink'] ?? '',
     );
   }
 }

@@ -28,7 +28,7 @@ class SimilarBooksListview extends StatelessWidget {
                     GoRouter.of(context).push(
                       detailsView,
                       extra: {
-                        'tag': 'similar$index',
+                        'tag': UniqueKey().toString(),
                         'book': state.books[index],
                       },
                     );
@@ -36,7 +36,6 @@ class SimilarBooksListview extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
                     child: CustomBookImage(
-                      tag: 'similar$index',
                       imageUrl: state.books[index].imageUrl ?? '',
                     ),
                   ),

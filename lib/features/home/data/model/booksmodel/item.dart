@@ -31,6 +31,7 @@ class Item extends BookEntity {
          imageUrl: volumeInfo?.imageLinks?.thumbnail ?? "",
          price: 0.0,
          rating: volumeInfo?.averageRating ?? 0,
+         previewLink: volumeInfo?.previewLink ?? "",
        );
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
