@@ -5,7 +5,6 @@ const String homeView = '/';
 const String detailsView = '/detailsView';
 const String searchView = '/searchView';
 const String gtSectraFine = 'GT Sectra Fine';
-const baseURL = 'https://www.googleapis.com/books/v1/';
 const newestEndPoint =
     'volumes?Filtering=free-ebooks&Sorting=newest &q=computer science';
 const featuredEndPoint = 'volumes?q=programming&filter=free-ebooks';
